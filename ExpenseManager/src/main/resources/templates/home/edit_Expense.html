@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Product</title>
+<link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<h1>Edit Expense</h1>
+<div id="form-box">
+         <form action="#" th:action="@{/updateExpense}" th:object="${expense}" method="post">
+            <div class="form-group blu-margin">
+               <span>Choose Category:</span>
+               <select name="expCategory" class="form-control" id="dropOperator">
+                  <option >Select Category</option>
+                  <option   th:each="category : ${categoriesLists}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+               </select>
+            </div>
+            <div>
+               <span>Name:</span>
+               <input type="text" th:field="*{expName}" placeholder="What did you spend on?" name="expName" >
+            </div>
+            <div>
+               <span>Date:</span>
+               <input type="date" th:field="*{expCreated}" name="expCreated" >
+            </div>
+            <div>
+               <span>Amount:</span>
+               <input type="number" th:field="*{expAmount}" name="expAmount" placeholder="How much?">
+            </div>
+      		<input type="hidden" th:field="*{expId}" name="expID" value=${expense.expId} >
+      <div> <button class="center" id="button" type="submit" >Edit</button></div>
+      </form>
+      </div>
+
+</body>
+</html>

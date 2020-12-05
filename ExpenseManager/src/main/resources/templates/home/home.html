@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Home</title>
+		<link rel="stylesheet" th:href="@{/css/home.css}">
+		<
+	</head>
+		<body>
+			
+			<div class="topnav">
+				<a class="active" th:href="@{home}">Home</a>
+				<a href="/addExpense">Expense Manager</a>
+				<a href=/addCategory>Category Manager</a>
+				<a th:href="@{/logout}">Sign out</a>
+			</div>
+			<h1>Hi 
+				<span th:utext="${userName}"></span> Welcome to your Expense Manager
+			</h1>
+		</body>
+</html>
+ 

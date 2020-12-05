@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet" th:href="@{/css/home.css}">
+		</head>
+		<body>
+			<div class="topnav">
+				<a href="/home/home">Home</a>
+				<a  href="/addExpense">Expense Manager</a>
+				<a class="active" href=/addCategory>Category Manager</a>
+				<a th:href="@{/logout}">Sign out</a>
+			</div>
+			<h1>Manage Category</h1>
+			<h2>Add a new Category:</h2>
+			<div id="form-box">
+				<form th:action="@{/save-category}"  method="post">
+					    <div class="form-group blu-margin">
+						    <span>Category Name:</span>
+						     <input type="text" placeholder="Whats the new Category?" name="categoryName">
+					    </div>
+						<div>
+							<span>Maximum Expense</span>
+							<input type="number"  placeholder="How much can you spend on this category?" name="categoryMaxExp">
+						</div>
+						<div> <button class="center" id="button" type="submit" >Add</button></div>
+
+				</form>
+					</div>
+					<table>
+						<tr>
+							<th id="Category" class="center">Category Name</th>
+							<th>Max Amount</th>
+							<th>Edit</th>
+							<th>Delete<th>
+						</tr>
+						<tr th:each="category : ${categoryList}">
+							<td th:text="${category.categoryName}"></td>
+							<td th:text="${category.categoryMaxExp}"></td>
+							 <td> <a th:href="@{'/editCategory/'+${category.categoryId}}">Edit</a></td>
+							<td>
+                  				 <a th:href="@{/deletecat/{categoryId}(categoryId=${category.categoryId})}">Delete</a>
+            				</td>
+						</tr>
+					</table>
+				</body>
+			</html>

@@ -23,11 +23,6 @@ public class ExpenseDao {
 		return expenseRepository.findByexpName(expName);
 	}
 	
-	public List<Expense> getExpenseByUser(int id)
-	{
-		return expenseRepository.findExpenseByUser(id);
-	}
-	
 	public Expense getExpense(int id){
 		return expenseRepository.findById(id).get();
 	}

@@ -33,6 +33,7 @@ public class ExpenseController {
   @PostMapping("/save-Expense")
   public String submitForm(@AuthenticationPrincipal UserDetails userDetails, @ModelAttribute("ExpenseForm") Expense expenseForm) {
 	  expenseForm.setUserId(userDao.findUserByEmail((userDetails.getUsername())));
+	  
 	  expenseDao.addExpense(expenseForm);
       return "redirect:/addExpense";
   }
@@ -45,10 +46,10 @@ public class ExpenseController {
   }
   
   @RequestMapping(path = {"/addExpense"}, method = RequestMethod.GET)
-  public String addExpense(Model model,@AuthenticationPrincipal UserDetails userDetails) {
-    List < Expense > expensesList = expenseDao.getExpenseByUser(userDao.findUserByEmail((userDetails.getUsername())).getUserId());
+  public String addExpense(Model model) {
+    List < Expense > expensesList = expenseDao.getAllExpenses();
     model.addAttribute("expensesList", expensesList);
-    List<Category> categoriesList = categoryDao.getCategoryByUser(userDao.findUserByEmail((userDetails.getUsername())).getUserId());
+    List<Category> categoriesList =  categoryDao.getAllCategory();
 	model.addAttribute("categoriesList", categoriesList);
     return "home/addExpense";
   }
@@ -58,8 +59,9 @@ public class ExpenseController {
   public String showEditExpensePage(@AuthenticationPrincipal UserDetails userDetails,Model model, @PathVariable("expId") Optional<Integer> expId) 
                           
   {
-	  List<Category> categoriesList = categoryDao.getCategoryByUser(userDao.findUserByEmail((userDetails.getUsername())).getUserId());
-		model.addAttribute("categoriesList", categoriesList);
+	  List<Category> categoriesList =  categoryDao.getAllCategory();
+	  
+    	model.addAttribute("categoriesLists", categoriesList);
           Expense exp = expenseDao.getExpense(expId.get());
           exp.setUserId(userDao.findUserByEmail((userDetails.getUsername())));
           model.addAttribute("expense", exp);

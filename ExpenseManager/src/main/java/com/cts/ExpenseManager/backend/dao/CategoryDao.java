@@ -27,9 +27,6 @@ public class CategoryDao {
 		return categoryReprository.findByCategoryName(name);
 	}
 	
-	public List<Category> getCategoryByUser(int id) {
-		return categoryReprository.findCategoryByUser(id);
-	}
 	public Category getCategory(int id){
 		return categoryReprository.findById(id).get();
 	}
@@ -41,7 +38,6 @@ public class CategoryDao {
 		categoryReprository.deleteById(id);
 		
 	}
-	
 	
 	public void updateCat(Category cat) {
 		categoryReprository.save(cat);

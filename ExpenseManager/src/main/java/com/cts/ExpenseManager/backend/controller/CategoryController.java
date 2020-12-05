@@ -27,9 +27,9 @@ public class CategoryController {
 	private UserDao userDao;
 	
 	@RequestMapping(path = {"/addCategory"}, method = RequestMethod.GET)
-	  public String addCategory(Model model,@AuthenticationPrincipal UserDetails userDetails) {
-		List<Category> categoriesList = categoryDao.getCategoryByUser(userDao.findUserByEmail((userDetails.getUsername())).getUserId());
-		model.addAttribute("categoriesList", categoriesList);
+	  public String addCategory(Model model) {
+	    List < Category > categoryList = categoryDao.getAllCategory();
+	    model.addAttribute("categoryList", categoryList);
 	    return "home/addCategory";
 	  }
 	

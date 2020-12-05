@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<title>Edit Product</title>
+<link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
+<body>
+
+<h1>Edit Category</h1>
+<div id="form-box">
+				<form th:action="@{/updateCategory}" th:object="${category}" method="post">
+					    <div class="form-group blu-margin">
+						    <span>Category Name:</span>
+						     <input th:field="*{categoryName}" value=${category.categoryName}  type="text" placeholder="Whats the new Category?" name="categoryName">
+					    </div>
+						<div>
+							<span>Maximum Expense</span>
+							<input type="number" th:field="*{categoryMaxExp}" name="categoryMaxExp" placeholder="How much can you spend on this category?" >
+						</div>
+						<input type="hidden" th:field="*{categoryId}" name="categoryId" value=${category.categoryId} >
+						<div> <button class="center" id="button" type="submit" >Edit</button></div>
+
+				</form>
+					</div>
+
+</body>
+</html>

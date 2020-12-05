@@ -65,7 +65,14 @@ public class Expense
 	}
 
 	
-	
+	public Expense(int expId, String expName, Float expAmount, Date expCreated)
+	{
+		super();
+		this.expId = expId;
+		this.expName = expName;
+		this.expAmount =expAmount;
+		this.expCreated = expCreated; 
+	}
 	  
 	 
 	public int getExpId() {

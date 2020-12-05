@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+   xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Add Expense</title>
+      <link rel="stylesheet" th:href="@{/css/home.css}">
+   </head>
+   <body>
+      <div class="topnav">
+         <a href="/home/home">Home</a>
+        <a class="active" href="/addExpense">Expense Manager</a>
+		<a  href=/addCategory>Category Manager</a>
+		<a th:href="@{/logout}">Sign out</a>
+      </div>
+      <h1>Add Expense</h1>
+      <h2>Add a new Expense:</h2>
+      <div id="form-box">
+         <form th:action="@{/save-Expense}"  method="post">
+            <div class="form-group blu-margin">
+               <span>Choose Category:</span>
+               <select name="expCategory" class="form-control" id="dropOperator">
+                  <option value="0">Select Category</option>
+                  <option   th:each="category : ${categoriesList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+               </select>
+            </div>
+            <div>
+               <span>Name:</span>
+               <input type="text"  placeholder="What did you spend on?" name="expName" >
+            </div>
+            <div>
+               <span>Date:</span>
+               <input type="date"  name="expCreated" >
+            </div>
+            <div>
+               <span>Amount:</span>
+               <input type="number" name="expAmount" placeholder="How much?">
+            </div>
+      
+      <div> <button class="center" id="button" type="submit" >Add</button></div>
+      </form>
+      </div>
+      <table>
+         <tr>
+            <th>Category</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Edit</th>
+            <th>Delete<th>
+         </tr>
+         <tr th:each="expense : ${expensesList}">
+            <td th:text="${expense.expCategory.categoryName}"></td>
+            <td th:text="${expense.expName}"></td>
+            <td th:text="${expense.expCreated}"></td>
+            <td th:text="${expense.expAmount}"></td>
+            <td> <a th:href="@{'/editExpense/'+${expense.expId}}">Edit</a></td>
+            <td><a th:href="@{/delete/{id}(id=${expense.expId})}">Delete</a> </td>
+         </tr>
+      </table>
+   </body>
+</html>
